@@ -11,7 +11,7 @@ CREATE TABLE STUDENT(
 CREATE TABLE TEACHER(
 	teacher_id INT PRIMARY KEY AUTO_INCREMENT,
     teacher_name VARCHAR(50) NOT NULL,
-    teacher_email VARCHAR(50) NOT NULL
+    teacher_email VARCHAR(50) UNIQUE NOT NULL
 );
 
 -- Nhật Minh
@@ -39,7 +39,7 @@ CREATE TABLE SCORE(
     mid_term_score DECIMAL(3,1) CHECK(mid_term_score >= 0 and mid_term_score <=10),
     end_term_score DECIMAL(3,1) CHECK(end_term_score >= 0 and end_term_score <=10),
     PRIMARY KEY (student_id, course_id),
-    FOREIGN KEY (student_id, course_id) REFERENCES ENROLLMENT (student_id, course_id)    
+    FOREIGN KEY (student_id, course_id) REFERENCES ENROLLMENT (student_id, course_id)   
 );
 -- Thêm thông tin (nhập dữ liệu ban đầu)
 -- Na
@@ -104,12 +104,11 @@ WHERE student_id = 3 AND course_id = 3;
 
 -- Xóa dữ liệu
 -- Bách
-DELETE FROM ENROLLMENT
-WHERE student_id = 2 AND course_id = 1;
--- Vân Anh
 DELETE FROM SCORE
-WHERE student_id = 2 AND course_id = 1;
-
+WHERE student_id = 2 AND course_id = 2;
+-- Vân Anh
+DELETE FROM ENROLLMENT
+WHERE student_id = 2 AND course_id = 2;
 -- Truy vấn dữ liệu
 -- Vân Anh
 SELECT * FROM STUDENT;
